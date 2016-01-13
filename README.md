@@ -1,4 +1,4 @@
-## Angular Material Meshblu Example
+## Resume Generator
 
 This repo contains a boilerplate for running a simple Meshblu connected Angular Material webpage.
 
