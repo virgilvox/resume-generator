@@ -3,8 +3,15 @@ var app = angular.module('MyApp', ['ngMaterial']);
 
 
 app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
-  $scope.sections = userData;
-  //$scope.sections = {"expertise":[{"data":[],"expertiseType": ""}],"experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],"education":{"relatedCoursework":[],"major":"","graduationYear":"","university":""},"firstName":"","lastName":"","contactInfo":{"email":"","phone":"","github":"","twitter":""}};
+
+  $scope.sections = {
+    "expertise": [{"data":[],"expertiseType": ""}],
+    "experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],
+    "education":{"relatedCoursework":[], "major": "","graduationYear":"","university":""},
+    "firstName":"",
+    "lastName":"",
+    "contactInfo":{"email":"","phone":"","github":"","twitter":""}
+  };
 
 
     // toggle opening and closing of sidebar
@@ -23,10 +30,9 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     };
 
   $scope.profileImage ="images/profilePicture.png"
-  $scope.profileImage = userData.picture;
 
 
-/*  var GET = {};
+  var GET = {};
   var query = window.location.search.substring(1).split("&");
   for (var i = 0, max = query.length; i < max; i++)
   {
@@ -41,14 +47,12 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     method: 'GET',
     url: url
   }).then(function successCallback(response) {
-  //  $scope.sections = response.data;
-//    $scope.profileImage = response.data.picture;
-//    $scope.$apply();
+    $scope.sections = response.data;
+    $scope.profileImage = response.data.picture;
+    $scope.$apply();
     console.log($scope.sections);
   }, function errorCallback(response) {
   });
-
-  */
 
 
 });
