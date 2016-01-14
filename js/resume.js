@@ -5,6 +5,8 @@ var app = angular.module('MyApp', ['ngMaterial']);
 app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
 
   $scope.profileImage ="images/profilePicture.png"
+  $scope.sections = {"expertise":[{"data":[],"expertiseType": ""}],"experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],"education":{"relatedCoursework":[],"major":"","graduationYear":"","university":""},"firstName":"","lastName":"","contactInfo":{"email":"","phone":"","github":"","twitter":""}};
+
 
   var GET = {};
   var query = window.location.search.substring(1).split("&");
