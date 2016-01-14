@@ -13,7 +13,6 @@ app.controller('AppCtrl', function($scope, $http) {
     GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
   }
 
-  $scope.model = {};
 
   var username = GET.username;
   var password = GET.password;
