@@ -22,7 +22,7 @@ app.controller('AppCtrl', function($scope,$http,$location) {
       var body = "username=" + $scope.model.username + "&" + "password=" + $scope.model.password;
       var req = {
         method: 'POST',
-        url: 'http://127.0.0.1:8070/login-user',
+        url: 'http://fracture.cc:8070/login-user',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: body
       };

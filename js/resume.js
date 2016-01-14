@@ -14,7 +14,7 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
   }
 
-  var url = 'http://127.0.0.1:8070/resume/' + GET.user;
+  var url = 'http://fracture.cc:8070/resume/' + GET.user;
   $http({
     method: 'GET',
     url: url
