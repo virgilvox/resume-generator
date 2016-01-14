@@ -1,4 +1,3 @@
-
 <html>
 
 <head>
@@ -26,7 +25,7 @@
         <md-content>
           <div style="text-align: center; width: 100%; height: 300px; background-image:url('images/profileBackground.jpg'); background-size:150%;">
             <div style="width: 90%; height: 200px; padding: 11% 5%">
-              <img ng-src="images/profilePicture.png" class="md-card-image" alt="" flex="80" style="border-radius: 50%; border: 6px solid #fff; vertical-align: middle;">
+              <img ng-src="{{profileImage}}" class="md-card-image" alt="" flex="80" style="border-radius: 50%; border: 6px solid #fff; vertical-align: middle;">
               <h1 style="color:white;">{{sections.firstName}} {{sections.lastName}}</h1>
             </div>
           </div>
@@ -118,4 +117,4 @@
         </md-content>
       </md-content>
     </section>
-    </body><script src="/_static/preview/livecss.js"></script>
+    </body>

@@ -4,6 +4,8 @@ var app = angular.module('MyApp', ['ngMaterial']);
 
 app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
 
+  $scope.profileImage ="images/profilePicture.png"
+
   var GET = {};
   var query = window.location.search.substring(1).split("&");
   for (var i = 0, max = query.length; i < max; i++)
@@ -20,6 +22,7 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     url: url
   }).then(function successCallback(response) {
     $scope.sections = response.data;
+    $scope.profileImage = response.data.picture;
     console.log($scope.sections);
   }, function errorCallback(response) {
   });

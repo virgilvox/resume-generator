@@ -13,7 +13,6 @@ app.controller('AppCtrl', function($scope, $http) {
     GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
   }
 
-
   var username = GET.username;
   var password = GET.password;
 
@@ -47,7 +46,8 @@ app.controller('AppCtrl', function($scope, $http) {
         type: "string"
       },
       picture: {
-        type: "string"
+        type: "string",
+        default: "images/profilePicture.png"
       },
       expertise: {
         type: "array",
