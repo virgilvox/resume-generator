@@ -1,7 +1,7 @@
 
 var app = angular.module('MyApp',['ngMaterial','schemaForm']);
 
-app.controller('AppCtrl', function($scope,$http,$location) {
+app.controller('AppCtrl', function($scope,$http) {
 
   $scope.schema = {
     type: "object",
@@ -11,6 +11,9 @@ app.controller('AppCtrl', function($scope,$http,$location) {
       },
       password: {
         type: "string"
+      },
+      email: {
+        type: "string"
       }
     }};
 
@@ -18,20 +21,21 @@ app.controller('AppCtrl', function($scope,$http,$location) {
 
     $scope.model = {};
 
-    $scope.login = function(){
-      var body = "username=" + $scope.model.username + "&" + "password=" + $scope.model.password;
+    $scope.register = function(){
+      var body = "username=" + $scope.model.username + "&" + "password=" + $scope.model.password + "&" + "email=" + $scope.model.email;
       var req = {
         method: 'POST',
-        url: 'http://127.0.0.1:8070/login-user',
+        url: 'http://127.0.0.1:8070/create',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         data: body
       };
 
       $http(req).then(function successCallback(response) {
         console.log(response);
-        window.location = "/generator?" + "username=" + $scope.model.username + "&" + "password=" + $scope.model.password;
+        $scope.modelString = response.data;
       }, function errorCallback(response) {
         console.log('err', response);
+        $scope.modelString = response.data;
       });
     };
   });

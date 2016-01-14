@@ -1,7 +1,38 @@
 
 var app = angular.module('MyApp',['ngMaterial','schemaForm']);
 
-app.controller('AppCtrl', function($scope) {
+app.controller('AppCtrl', function($scope, $http) {
+
+  var GET = {};
+  var query = window.location.search.substring(1).split("&");
+  for (var i = 0, max = query.length; i < max; i++)
+  {
+    if (query[i] === "")
+    continue;
+    var param = query[i].split("=");
+    GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+  }
+
+  $scope.model = {};
+
+  var username = GET.username;
+  var password = GET.password;
+
+      //var body = "username=" + username + "&password=" + password;
+      var body = {"username": username, "password": password};
+      var req = {
+        method: 'POST',
+        url: 'http://127.0.0.1:8070/login-user',
+        headers: {'Content-Type': 'application/json'},
+        data: body
+      };
+
+      $http(req).then(function successCallback(response) {
+        $scope.model = response.data.resume;
+        console.log($scope.model);
+      }, function errorCallback(response) {
+        console.log('err', response);
+      });
 
   $scope.schema = {
     type: "object",
@@ -70,69 +101,28 @@ app.controller('AppCtrl', function($scope) {
 
     $scope.form = ["*"];
 
-    $scope.model = {};
+    $scope.view = function(){
+      window.location = "/resume.html?user=" + username;
+    };
 
-    $scope.display = function(){
+    $scope.save = function(){
       console.log($scope.model);
       $scope.modelString = JSON.stringify($scope.model);
+      //var body = "username=" + username + "&password=" + password + "&resume=" + $scope.modelString;
+      var body = {"username": username, "password": password, "resume": $scope.model};
+      var req = {
+        method: 'POST',
+        url: 'http://127.0.0.1:8070/update',
+        headers: {'Content-Type': 'application/json'},
+        data: body
+      };
+
+      $http(req).then(function successCallback(response) {
+        console.log(response);
+      }, function errorCallback(response) {
+        console.log('err', response);
+      });
     };
 
-    // initialize with at least something
-    $scope.displayText = "Hello World";
-/*
-    var MESSAGE_SCHEMA = {
-      "type": 'object',
-      "properties": {
-        "text": {
-          "type": "string"
-        }
-      }
-    };
 
-
-      $scope.payload = function(data){
-      $scope.displayText = data.payload.text;
-      $scope.$apply()
-    }
-
-    var GET = {};
-    var query = window.location.search.substring(1).split("&");
-    for (var i = 0, max = query.length; i < max; i++)
-    {
-      if (query[i] === "")
-      continue;
-      var param = query[i].split("=");
-      GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-    }
-
-    var conn = meshblu.createConnection({
-      "uuid": GET.uuid,
-      "token": GET.token
-    });
-
-    conn.on('ready', function(data){
-      console.log('UUID AUTHENTICATED!');
-      console.log(data);
-      conn.update({
-        "uuid": GET.uuid,
-        "messageSchema": MESSAGE_SCHEMA
-      });
-
-      conn.on('message', function(data){
-        $scope.payload(data);
-      });
-
-
-      $scope.sendMessage = function(){
-        var message = {
-          "devices": "*",
-          "payload": {
-            "ngclickEvent": true
-          }
-        };
-        conn.message(message);
-    });
-
-
-*/
   });

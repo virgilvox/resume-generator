@@ -2,43 +2,7 @@
 var app = angular.module('MyApp', ['ngMaterial']);
 
 
-app.controller('AppCtrl', function($scope,$mdSidenav) {
-
-
-// it will say its not available but it would
-// be when run in browser because json.js is included
-// before app.js is loaded
-$scope.sections = userData;
-
-
-// toggle opening and closing of sidebar
-$scope.toggle = function() {
-      $mdSidenav('left').toggle();
-  };
-
-// Async open the given sidenav
-$scope.open = function(){
-  $mdSidenav('left').open();
-};
-
-// Async close the given sidenav
-$scope.close = function(){
-$mdSidenav('left').close();
-};
-
-  var MESSAGE_SCHEMA = {
-    "type": 'object',
-    "properties": {
-      "text": {
-        "type": "string"
-      }
-    }
-  };
-
-  $scope.payload = function(data){
-    $scope.displayText = data.payload.text;
-    $scope.$apply()
-  }
+app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
 
   var GET = {};
   var query = window.location.search.substring(1).split("&");
@@ -50,27 +14,32 @@ $mdSidenav('left').close();
     GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
   }
 
-  // var conn = meshblu.createConnection({
-  //   "uuid": GET.uuid,
-  //   "token": GET.token
-  // });
+  var url = 'http://127.0.0.1:8070/resume/' + GET.user;
+  $http({
+    method: 'GET',
+    url: url
+  }).then(function successCallback(response) {
+    $scope.sections = response.data;
+    console.log($scope.sections);
+  }, function errorCallback(response) {
+  });
 
-  // conn.on('ready', function(data){
-  //   console.log('UUID AUTHENTICATED!');
-  //   console.log(data);
-  //   conn.update({
-  //     "uuid": GET.uuid,
-  //     "messageSchema": MESSAGE_SCHEMA
-  //   });
 
-  //   conn.on('message', function(data){
-  //     $scope.payload(data);
-  //   });
 
-  // });
+  // toggle opening and closing of sidebar
+  $scope.toggle = function() {
+    $mdSidenav('left').toggle();
+  };
+
+  // Async open the given sidenav
+  $scope.open = function(){
+    $mdSidenav('left').open();
+  };
+
+  // Async close the given sidenav
+  $scope.close = function(){
+    $mdSidenav('left').close();
+  };
+
 
 });
-
-// angular.module('toolbarDemo1', ['ngMaterial'])
-// .controller('AppCtrl2', function($scope) {
-// });
