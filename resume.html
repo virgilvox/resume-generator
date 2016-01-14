@@ -30,7 +30,7 @@
             </div>
           </div>
         </md-content>
-        <md-content class="md-padding" layout="column" ng-repeat="type in sections.expertise">
+        <md-content class="md-padding" ng-repeat="type in sections.expertise">
           <h3>{{type.expertiseType}}</h3>
           <md-chips ng-model="type.data" readOnly="true">
             <md-chip-template>
@@ -41,11 +41,11 @@
         </md-content>
       </md-sidenav>
       <!--Content-->
-      <md-content layout="column">
+      <md-content>
         <md-toolbar class="md-theme-indigo">
           <div class="md-toolbar-tools">
             <h2>
-              <span> </span>
+              <span>                </span>
             </h2>
             <span flex></span>
             <md-button ng-disabled="true" class="md-primary">
