@@ -33,6 +33,7 @@ app.controller('AppCtrl', function($scope,$http) {
       $http(req).then(function successCallback(response) {
         console.log(response);
         $scope.modelString = response.data;
+        window.location = "/login";
       }, function errorCallback(response) {
         console.log('err', response);
         $scope.modelString = response.data;

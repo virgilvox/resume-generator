@@ -28,7 +28,11 @@ app.controller('AppCtrl', function($scope, $http) {
       };
 
       $http(req).then(function successCallback(response) {
-        $scope.model = response.data.resume;
+        if(response.data.resume != null || response.data.resume != undefined || response.data.resume != {}){
+          $scope.model = response.data.resume;
+        }else{
+          $scope.model = {"expertise":[{"data":[],"expertiseType": ""}],"experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],"education":{"relatedCoursework":[],"major":"","graduationYear":"","university":""},"firstName":"","lastName":"","contactInfo":{"email":"","phone":"","github":"","twitter":""}};
+        }
         console.log($scope.model);
       }, function errorCallback(response) {
         console.log('err', response);
