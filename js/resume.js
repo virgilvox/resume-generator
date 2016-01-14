@@ -42,6 +42,7 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
   }).then(function successCallback(response) {
     $scope.sections = response.data;
     $scope.profileImage = response.data.picture;
+    $scope.$apply();
     console.log($scope.sections);
   }, function errorCallback(response) {
   });
