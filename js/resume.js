@@ -3,8 +3,8 @@ var app = angular.module('MyApp', ['ngMaterial']);
 
 
 app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
-
-  $scope.sections = {"expertise":[{"data":[],"expertiseType": ""}],"experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],"education":{"relatedCoursework":[],"major":"","graduationYear":"","university":""},"firstName":"","lastName":"","contactInfo":{"email":"","phone":"","github":"","twitter":""}};
+  $scope.sections = userData;
+  //$scope.sections = {"expertise":[{"data":[],"expertiseType": ""}],"experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],"education":{"relatedCoursework":[],"major":"","graduationYear":"","university":""},"firstName":"","lastName":"","contactInfo":{"email":"","phone":"","github":"","twitter":""}};
 
 
     // toggle opening and closing of sidebar
@@ -40,9 +40,9 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     method: 'GET',
     url: url
   }).then(function successCallback(response) {
-    $scope.sections = response.data;
-    $scope.profileImage = response.data.picture;
-    $scope.$apply();
+  //  $scope.sections = response.data;
+//    $scope.profileImage = response.data.picture;
+//    $scope.$apply();
     console.log($scope.sections);
   }, function errorCallback(response) {
   });
