@@ -29,7 +29,7 @@ app.controller('AppCtrl', function($scope,$http,$location) {
 
       $http(req).then(function successCallback(response) {
         console.log(response);
-        window.location = "/generator?" + "username=" + $scope.model.username + "&" + "password=" + $scope.model.password;
+        window.location = "/resgen/generator?" + "username=" + $scope.model.username + "&" + "password=" + $scope.model.password;
       }, function errorCallback(response) {
         console.log('err', response);
       });
