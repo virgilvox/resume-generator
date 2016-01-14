@@ -64,7 +64,7 @@ app.controller('AppCtrl', function($scope, $http) {
         items: {
           type: "object",
           properties: {
-            expertiseType: { type: "string" },
+            experienceType: { type: "string" },
             contents: {
               type: "array",
               items: {
