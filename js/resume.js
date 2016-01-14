@@ -4,14 +4,7 @@ var app = angular.module('MyApp', ['ngMaterial']);
 
 app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
 
-  $scope.sections = {
-    "expertise": [{"data":[],"expertiseType": ""}],
-    "experience":[{"contents":[{"tags":[],"name":"","startEndYears":"","subtitle":"","description":""}],"expertiseType":""}],
-    "education":{"relatedCoursework":[], "major": "","graduationYear":"","university":""},
-    "firstName":"",
-    "lastName":"",
-    "contactInfo":{"email":"","phone":"","github":"","twitter":""}
-  };
+  $scope.sections = userData;
 
 
     // toggle opening and closing of sidebar
