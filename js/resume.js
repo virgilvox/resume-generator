@@ -23,9 +23,10 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     };
 
   $scope.profileImage ="images/profilePicture.png"
+  $scope.profileImage = userData.picture;
 
 
-  var GET = {};
+/*  var GET = {};
   var query = window.location.search.substring(1).split("&");
   for (var i = 0, max = query.length; i < max; i++)
   {
@@ -46,6 +47,8 @@ app.controller('AppCtrl', function($scope,$mdSidenav,$http) {
     console.log($scope.sections);
   }, function errorCallback(response) {
   });
+
+  */
 
 
 });
