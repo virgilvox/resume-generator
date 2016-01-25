@@ -105,7 +105,7 @@ app.controller('AppCtrl', function($scope, $http) {
     $scope.form = ["*"];
 
     $scope.view = function(){
-      window.location = "/resgen/resume.html?user=" + username;
+      window.location = "./resume.html?user=" + username;
     };
 
     $scope.save = function(){
